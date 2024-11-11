@@ -1,11 +1,9 @@
 name: Github Actions Nightly
 
 on:
-  schedule:
-    - cron: "0 15 * * *" # run at 3 PM UTC every day
   push:
-    paths:
-      - "**/Nightly.yml"
+    branches:
+    - main
   workflow_dispatch:
 
 jobs:
@@ -66,12 +64,12 @@ jobs:
         id: artifacts
         run: |
           pushd publish
-          tar -a -c -f ../playlunky_nightly.zip *
+          tar -a -c -f ../playlunky_hdmod.zip *
           popd
-          echo "##[set-output name=hash;]$(( Get-FileHash playlunky_nightly.zip ).Hash.substring(0, 7))"
+          echo "##[set-output name=hash;]$(( Get-FileHash playlunky_hdmod.zip ).Hash.substring(0, 7))"
 
       - name: Rename Artifact
-        run: Rename-Item playlunky_nightly.zip playlunky_nightly_${{ steps.artifacts.outputs.hash }}.zip
+        run: Rename-Item playlunky_hdmod.zip playlunky_hdmod_${{ steps.artifacts.outputs.hash }}.zip
 
       - name: Create release
         uses: marvinpinto/action-automatic-releases@v1.1.0
@@ -81,5 +79,5 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "nightly"
           prerelease: true
-          title: "Nightly Build"
-          files: ./playlunky_nightly_${{ steps.artifacts.outputs.hash }}.zip
+          title: "HDmod Nightly Build"
+          files: ./playlunky_hdmod_${{ steps.artifacts.outputs.hash }}.zip
