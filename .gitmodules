@@ -9,7 +9,8 @@
 	url = https://github.com/ddiakopoulos/libnyquist.git
 [submodule "submodules/overlunky"]
 	path = submodules/overlunky
-	url = https://github.com/spelunky-fyi/overlunky.git
+	url = https://github.com/doofus9341/overlunky.git
+	branch = fmod-studio-lua
 [submodule "submodules/zip-adaptor"]
 	path = submodules/zip-adaptor
 	url = https://github.com/Malacath-92/zip-adaptor.git
