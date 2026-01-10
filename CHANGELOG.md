@@ -6,6 +6,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [vHDMod-0.2] - 2026-01-10
+
+<img src="https://img.shields.io/badge/Spelunky 2-1.28-orange">
+
+### Added
+- **FMOD Studio API support** - Comprehensive FMOD Studio audio capabilities exposed to Lua scripting via doofus9341/overlunky fork
+  - `CustomBank` - Load and manage custom FMOD bank files with `load_bank()` and `get_bank()`
+  - `CustomEventDescription` - Access event metadata and parameter descriptions
+  - `CustomEventInstance` - Create and control sound event instances with full parameter, volume, and pitch control
+  - `FMODguidMap` - Map human-readable event paths to GUIDs via `create_fmod_guid_map()`
+  - `ParameterDescription` & `ParameterId` - Full parameter identification and metadata support
+  - Enables seamless custom music, dynamic audio, custom level ambience, shop music, and advanced audio effects
+  - See PR [spelunky-fyi/overlunky#424](https://github.com/spelunky-fyi/overlunky/pull/424) for complete documentation
+
+### Changed
+- Updated overlunky submodule to `doofus9341:fmod-studio-lua` branch (commit 26c82f1e)
+- `.gitmodules` now explicitly tracks the `fmod-studio-lua` branch for reproducible builds
+
+### Fixed
+- Steam overlay hook pattern matching errors ("Failed finding pattern 'steam_overlay_present'")
+  - Updated to use shorter, more reliable patterns compatible with newer Steam overlay versions
+  - Pattern search now non-blocking (won't show error dialogs on pattern failure)
+  - Includes fix from overlunky commit 6354450e
+
 ## [0.17.0] - 2024-01-13
 
 <img src="https://img.shields.io/badge/Spelunky 2-1.28-orange">
